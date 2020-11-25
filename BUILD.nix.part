@@ -43,7 +43,7 @@ haskell_toolchain(
             "-Wredundant-constraints",
         ],
     tools = ["@ghc//:bin"],
-    version = "8.6.5",
+    version = "8.8.4",
     is_static = False,
     libraries = toolchain_libraries,
     locale_archive = "@glibc_locales//:locale-archive",

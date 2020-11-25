@@ -1,10 +1,10 @@
 {
   "nixpkgs": {
     "owner": "NixOS",
-    "repo": "nixpkgs-channels",
-    "branch": "nixos-unstable",
-    "rev": "a21c2fa3ea2b88e698db6fc151d9c7259ae14d96",
-    "sha256": "1z3kxlbz6bqx1dlagcazg04vhk67r8byihzf959c3m0laf2a1w7y"
+    "repo": "nixpkgs",
+    "branch": "nixos-20.09",
+    "rev": "d105075a1fd870b1d1617a6008cb38b443e65433",
+    "sha256": "1jcs44wn0s6mlf2jps25bvcai1rij9b2dil6zcj8zqwf2i8xmqjh"
   },
   "gitignore": {
     "owner": "hercules-ci",

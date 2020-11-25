@@ -23,13 +23,10 @@ import           Conduit                        ( ConduitT
                                                 , yield
                                                 , MonadThrow
                                                 )
-import           Control.Monad                  ( join
-                                                , void
+import           Control.Monad                  ( -- join
+                                                 -- , void
                                                 )
-import           Data.Function                  ( on )
-import           Data.Text                      ( Text
-                                                , toCaseFold
-                                                )
+import           Data.Text                      ( toCaseFold )
 import           Data.XML.Types                 ( Event )
 import qualified Text.XML                      as XML
                                                 ( Name(..) )
@@ -60,17 +57,17 @@ matchingLocalName localName = XML.matching isTagWithLocalName
 -- | Skip tag with a given name. No-op if next tag to parse does not match.
 ignoreTagTree :: MonadThrow m => Text -> ConduitT Event o m ()
 ignoreTagTree tagName =
-    void (XML.ignoreTreeContent $ matchingLocalName tagName)
+    void (XML.ignoreTreeContent (matchingLocalName tagName) ignoreAttrs)
 
 -- | Skip tags in sequence. Only tags in given order are skipped.
 ignoreTagSequence :: MonadThrow m => [Text] -> ConduitT Event o m ()
 ignoreTagSequence =
-    mapM_ $ XML.many_ . XML.ignoreTreeContent . matchingLocalName
+    mapM_ $ XML.many_ . (\name -> XML.ignoreTreeContent (matchingLocalName name) ignoreAttrs)
 
 -- | Skip tags which are not on the list.
 ignoreTagsExcept :: MonadThrow m => [Text] -> ConduitT Event o m ()
 ignoreTagsExcept tagsToKeep = XML.many_
-    $ XML.ignoreTreeContent (XML.matching $ not . isTagToKeep)
+    $ XML.ignoreTreeContent (XML.matching $ not . isTagToKeep) ignoreAttrs
   where
     isTagToKeep :: XML.Name -> Bool
     isTagToKeep t =

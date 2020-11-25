@@ -10,15 +10,12 @@ module Options.Applicative.Extended
 where
 
 import           Data.ByteString                ( ByteString )
-import           Data.Monoid                    ( (<>) )
+import           Data.Monoid                    ( )
 import           Data.Text                      ( Text )
 import qualified Data.Text                     as T
 import qualified Data.Text.Encoding            as T
 import           Options.Applicative
-import           Options.Applicative.Builder.Internal
-                                                ( HasName
-                                                , HasValue
-                                                )
+import           Options.Applicative.Builder.Internal ( )
 
 -- | Shorthand for defining a program help and executing the option parser.
 parseOptionsIO :: Text -> Parser a -> IO a

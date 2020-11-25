@@ -21,9 +21,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_sh",
-    sha256 = "63eb736f7562ed80054e373392abb0d4950d70e22542665079158854bd2cd98f",
-    strip_prefix = "rules_sh-39e356843071f93caf2caaf427d46cd10717501b",
-    urls = ["https://github.com/tweag/rules_sh/archive/39e356843071f93caf2caaf427d46cd10717501b.tar.gz"],
+    sha256 = "83a065ba6469135a35786eb741e17d50f360ca92ab2897857475ab17c0d29931",
+    strip_prefix = "rules_sh-0.2.0",
+    urls = ["https://github.com/tweag/rules_sh/archive/v0.2.0.tar.gz"],
 )
 
 load("@rules_sh//sh:repositories.bzl", "rules_sh_dependencies")
@@ -33,9 +33,9 @@ rules_sh_dependencies()
 # NOTE: update release.nix if changing version of rules_haskell here.
 http_archive(
     name = "rules_haskell",
-    sha256 = "758f8190a9dd6e5e6fd7c9fb38a1bb4c5743a6e314d6678761e2cc070d8e465b",
-    strip_prefix = "rules_haskell-107ab5ccf0cdf884e19c1b3a37b9b8064c4e4e03",
-    urls = ["https://github.com/tweag/rules_haskell/archive/107ab5ccf0cdf884e19c1b3a37b9b8064c4e4e03.tar.gz"],
+    sha256 = "b4e2c00da9bc6668fa0404275fecfdb31beb700abdba0e029e74cacc388d94d6",
+    strip_prefix = "rules_haskell-0.13",
+    urls = ["https://github.com/tweag/rules_haskell/archive/v0.13.tar.gz"],
 )
 
 load("@rules_haskell//haskell:repositories.bzl", "rules_haskell_dependencies")
@@ -44,9 +44,9 @@ rules_haskell_dependencies()
 
 http_archive(
     name = "io_tweag_rules_nixpkgs",
-    sha256 = "f5af641e16fcff5b24f1a9ba5d93cab5ad26500271df59ede344f1a56fc3b17d",
-    strip_prefix = "rules_nixpkgs-0.6.0",
-    urls = ["https://github.com/tweag/rules_nixpkgs/archive/v0.6.0.tar.gz"],
+    sha256 = "5c80f5ed7b399a857dd04aa81e66efcb012906b268ce607aaf491d8d71f456c8",
+    strip_prefix = "rules_nixpkgs-0.7.0",
+    urls = ["https://github.com/tweag/rules_nixpkgs/archive/v0.7.0.tar.gz"],
 )
 
 ### MARK: CUT START when building with nix
@@ -104,12 +104,12 @@ haskell_register_ghc_nixpkgs(
         "//nix:versions.json",
     ],
     repositories = {"nixpkgs": "@nixpkgs//nix:nixpkgs.nix"},
-    version = "8.6.5",
+    version = "8.8.4",
 )
 
-load("@rules_haskell//haskell:toolchain.bzl", "rules_haskell_toolchains")
+#load("@rules_haskell//haskell:toolchain.bzl", "rules_haskell_toolchains")
 
-rules_haskell_toolchains(version = "8.6.5")
+#rules_haskell_toolchains(version = "8.8.4")
 
 load(
     "@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl",

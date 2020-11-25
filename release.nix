@@ -16,8 +16,8 @@ with {
     rules_haskell = pkgs.fetchFromGitHub {
       owner = "tweag";
       repo = "rules_haskell";
-      rev = "107ab5ccf0cdf884e19c1b3a37b9b8064c4e4e03";
-      sha256 = "092cx9xix6r8735yn4j247kanzmsh1bjjifgk39jq8fidgldlhsj";
+      rev = "v0.13";
+      sha256 = "092cx9xix6r8735yn4j247kanzmsh1bjjifgk39jq8fidgldlhs0";
     };
 };
 with {
