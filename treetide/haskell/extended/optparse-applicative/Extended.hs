@@ -15,7 +15,8 @@ import           Data.Text                      ( Text )
 import qualified Data.Text                     as T
 import qualified Data.Text.Encoding            as T
 import           Options.Applicative
-import           Options.Applicative.Builder.Internal ( )
+import           Options.Applicative.Builder.Internal
+                                                ( )
 
 -- | Shorthand for defining a program help and executing the option parser.
 parseOptionsIO :: Text -> Parser a -> IO a
@@ -43,9 +44,10 @@ class Optionable a where
 -- complicated types manually. But preferrably complicated stuff should not be
 -- passed as options.
 instance (Show a, Read a, Num a) => Optionable a where
-    defineOption name defVal desc =
-        option auto (defOptionableMods name (defVal + 0 {- to force constraint -}
-                                                       ) desc show)
+    defineOption name defVal desc = option
+        auto
+        (defOptionableMods name (defVal + 0 {- to force constraint -}
+                                           ) desc show)
 
 instance {-# OVERLAPPING #-} Optionable Text where
     defineOption name defVal desc =

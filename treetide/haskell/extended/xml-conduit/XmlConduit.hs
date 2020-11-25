@@ -62,7 +62,9 @@ ignoreTagTree tagName =
 -- | Skip tags in sequence. Only tags in given order are skipped.
 ignoreTagSequence :: MonadThrow m => [Text] -> ConduitT Event o m ()
 ignoreTagSequence =
-    mapM_ $ XML.many_ . (\name -> XML.ignoreTreeContent (matchingLocalName name) ignoreAttrs)
+    mapM_
+        $ XML.many_
+        . (\name -> XML.ignoreTreeContent (matchingLocalName name) ignoreAttrs)
 
 -- | Skip tags which are not on the list.
 ignoreTagsExcept :: MonadThrow m => [Text] -> ConduitT Event o m ()
@@ -123,7 +125,7 @@ parseFoldState parsers0 s0 = Just <$> go s0
     parsers = parsers0 <> [parseFallback]
         where
           -- Swallows an unhandled tag.
-          parseFallback s = fmap (fmap (const s)) XML.ignoreAnyTreeContent
+              parseFallback s = fmap (fmap (const s)) XML.ignoreAnyTreeContent
     -- | Tries the first subparser that works (falling back to an accept-any
     -- parser), and loops while there's any tag to try.
     go s = do
